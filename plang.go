@@ -20,31 +20,31 @@ import (
 func main() {
 	log.SetFlags(0)
 
-	root, err := goroot("weihua")
+	root, err := goroot("plang")
 	if err != nil {
-		log.Fatalf("weihua: %v", err)
+		log.Fatalf("plang: %v", err)
 	}
 
 	if len(os.Args) > 1 && os.Args[1] == "download" {
 		switch len(os.Args) {
 		case 2:
 			if err := installTip(root, ""); err != nil {
-				log.Fatalf("weihua: %v", err)
+				log.Fatalf("plang: %v", err)
 			}
 		case 3:
 			if err := installTip(root, os.Args[2]); err != nil {
-				log.Fatalf("weihua: %v", err)
+				log.Fatalf("plang: %v", err)
 			}
 		default:
-			log.Fatalf("weihua: usage: weihua download [CL number | branch name]")
+			log.Fatalf("plang: usage: plang download [CL number | branch name]")
 		}
-		log.Printf("Success. You may now run 'weihua'!")
+		log.Printf("Success. You may now run 'plang'!")
 		os.Exit(0)
 	}
 
 	gobin := filepath.Join(root, "bin", "go"+exe())
 	if _, err := os.Stat(gobin); err != nil {
-		log.Fatalf("weihua: not downloaded. Run 'weihua download' to install to %v", root)
+		log.Fatalf("plang: not downloaded. Run 'plang download' to install to %v", root)
 	}
 
 	runGo(root)
